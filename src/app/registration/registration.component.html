@@ -1,0 +1,49 @@
+<div>
+  <form class="form-login" [formGroup]="form">
+    <h3 class="font-weight-normal mb-3">Регистрация</h3>
+    <label for="name">Введите имя</label>
+    <input
+      (focus)="onFlag()"
+      formControlName="name"
+      type="text"
+      class="form-control mb-3"
+      placeholder="Имя"
+    />
+    <label for="name">Введите логин</label>
+    <input
+      (focus)="onFlag()"
+      formControlName="login"
+      type="text"
+      class="form-control mb-3"
+      placeholder="Логин"
+    />
+    <label for="name">Введите пароль</label>
+    <input
+      (focus)="onFlag()"
+      formControlName="password"
+      type="password"
+      class="form-control mb-3"
+      placeholder="Пароль"
+    />
+    <div *ngIf="!existLogin" class="attention">
+      <span class="alert alert-warning mt-3" role="alert"
+        >Такой логин уже существует!</span
+      >
+    </div>
+    <div *ngIf="!isEmpty" class="attention">
+      <span class="field-required alert alert-danger mt-3" role="alert"
+        >Одно или несколько полей пустые!</span
+      >
+    </div>
+    <button
+      (click)="onRegistr()"
+      id="btnLogin"
+      class="btn btn-lg btn-success btn-block"
+    >
+      Зарегистрироваться
+    </button>
+    <p>
+      Есть аккаунт? <a class="" [routerLink]="['/login']">Авторизируйтесь!</a>
+    </p>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <h2 class="mt-5 mb-3 d-flex justify-content-center">
+    Сервис идей по благоустройству "Удобный город"
+  </h2>
+  <p *ngIf="hide1" class="mt-4 mb-4 d-flex justify-content-center">
+    Хотите увидеть что-то?<a [routerLink]="['/login']"
+      >&nbsp;Авторизируйтесь или зарегистрируйтесь!</a
+    >
+  </p>
+  <div class="row mt-2 mb-1"></div>
+
+  <div *ngIf="!hide1">
+    <h1>Привет, {{ user.name }}!</h1>
+  </div>
+</div>

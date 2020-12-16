@@ -12,6 +12,7 @@ import { AuthorizationComponent } from "./authorization/authorization.component"
 import { MainComponent } from "./main/main.component";
 
 import { FormsModule } from "@angular/forms";
+import { PetitionListComponent } from './petition-list/petition-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule } from "@angular/forms";
     RegistrationComponent,
     AuthorizationComponent,
     MainComponent,
+    PetitionListComponent,
   ],
   imports: [
     BrowserModule,

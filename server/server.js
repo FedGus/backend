@@ -110,7 +110,7 @@ app.post("/api/registration", (req, res) => {
       console.log(results[0]);
       if (results[0] === undefined) {
         connection.query(
-          "INSERT INTO `users` (`id`, `login`, `password`, `name`, `role`) VALUES (NULL, ?, ?, ?, ?)",
+          "INSERT INTO `users` (`id_user`, `login`, `password`, `name`, `role`) VALUES ( NULL,?, ?, ?, ?)",
           [req.body.login, req.body.password, req.body.name, req.body.role],
           function () {
             console.log(
@@ -139,6 +139,24 @@ app.post("/api/registration", (req, res) => {
       }
     }
   );
+});
+
+// Получение списка петиций
+app.get('/api/petitions', function (req, res) {
+  try {
+    connection.query('SELECT * FROM `Petition` ORDER BY id_petition DESC', function (error, results) {
+      if (error) {
+        res.status(500).send('Ошибка сервера при получении списка петиций')
+        console.log(error);
+      }
+      console.log('Результаты получения списка петиций');
+      console.log(results);
+      res.json(results);
+    });
+  } catch (error) { 
+    console.log(error);
+  }
+
 });
 
 // Информирование о запуске сервера и его порте

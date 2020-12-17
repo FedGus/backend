@@ -1,0 +1,13 @@
+<div class="container">
+  <h1 class="m-5 text-center">Подробная информация о петиции</h1>
+  <div *ngFor="let petition of petition">
+    <img
+      src="{{ petition.image }}"
+      alt="photo"
+      class="img-responsive img-thumbnail"
+    />
+    <h5>{{ petition.title }}</h5>
+    <small>Автор: {{ petition.id_user }}</small>
+    <p>{{ petition.content }}</p>
+  </div>
+</div>

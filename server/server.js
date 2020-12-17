@@ -159,6 +159,24 @@ app.get('/api/petitions', function (req, res) {
 
 });
 
+// Получение петиции по id
+app.get('/api/petitions/:id', function (req, res) {
+  try {
+    connection.query(`SELECT * FROM Petition WHERE id_petition="${req.params.id}"`, function (error, results) {
+      if (error) {
+        res.status(500).send('Ошибка сервера при получении петиции')
+        console.log(error);
+      }
+      console.log('Результаты получения петиции');
+      console.log(results);
+      res.json(results);
+    });
+  } catch (error) { 
+    console.log(error);
+  }
+
+});
+
 // Информирование о запуске сервера и его порте
 app.listen(port, () => {
   console.log("Сервер запущен на http://localhost:" + port);

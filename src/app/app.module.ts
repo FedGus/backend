@@ -13,6 +13,7 @@ import { MainComponent } from "./main/main.component";
 
 import { FormsModule } from "@angular/forms";
 import { PetitionListComponent } from './petition-list/petition-list.component';
+import { PetitionItemComponent } from './petition-item/petition-item.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PetitionListComponent } from './petition-list/petition-list.component';
     AuthorizationComponent,
     MainComponent,
     PetitionListComponent,
+    PetitionItemComponent,
   ],
   imports: [
     BrowserModule,

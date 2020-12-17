@@ -1,30 +1,110 @@
-<div class="container">
-  <h1 class="m-5 text-center">Петиции</h1>
-  <div *ngFor="let petition of petitions" class="list-group mt-4">
-    <a
-      [routerLink]="['/petition-item', petition.id_petition]"
-      class="list-group-item list-group-item-action d-flex justify-content-around"
-    >
-      <div class="d-flex">
-        <img
-          src="{{ petition.image }}"
-          alt="photo"
-          class="img-responsive img-thumbnail rounded-circle w-50"
-        />
-        <div class="m-3">
-          <h5 class="list-group-item-heading">{{ petition.title }}</h5>
-          <p class="list-group-item-text">{{ petition.location }}</p>
+<h1 class="m-5 text-center">Петиции</h1>
+<div class="d-flex">
+  <div>
+    <h3>Фильтры</h3>
+
+    <hr />
+
+    <p class="font-weight-bold">Категории</p>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <!-- Default checked -->
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="check1"
+            [(ngModel)]="category.every"
+          />
+          <label class="custom-control-label" for="check1">Все</label>
         </div>
-      </div>
-      <div class="d-flex justify-content-between flex-column">
-        <small>Дата создания: {{ petition.timestamp }}</small>
-        <button
-          class="btn btn-success"
-          [routerLink]="['/petition-item', petition.id_petition]"
-        >
-          Подробнее
-        </button>
-      </div>
-    </a>
+      </li>
+      <li class="list-group-item">
+        <!-- Default checked -->
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="check2"
+            [(ngModel)]="category.remont"
+          />
+          <label class="custom-control-label" for="check2"
+            >Ремонт и реконструкция</label
+          >
+        </div>
+      </li>
+      <li class="list-group-item">
+        <!-- Default checked -->
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="check3"
+            [(ngModel)]="category.blago"
+          />
+          <label class="custom-control-label" for="check3"
+            >Благоустройство</label
+          >
+        </div>
+      </li>
+      <li class="list-group-item">
+        <!-- Default checked -->
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="check4"
+            [(ngModel)]="category.ozelenenie"
+          />
+          <label class="custom-control-label" for="check4">Озеленение</label>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <!-- Default checked -->
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="check5"
+            [(ngModel)]="category.osvet"
+          />
+          <label class="custom-control-label" for="check5">Освещение</label>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <div
+      *ngFor="let petition of petitions | categorySort: category"
+      class="list-group mt-4"
+    >
+      <a
+        [routerLink]="['/petition-item', petition.id_petition]"
+        class="list-group-item list-group-item-action d-flex justify-content-around"
+      >
+        <div class="d-flex">
+          <img
+            src="{{ petition.image }}"
+            alt="photo"
+            class="img-responsive img-thumbnail rounded-circle w-50"
+          />
+          <div class="m-3">
+            <h5 class="list-group-item-heading">{{ petition.title }}</h5>
+            <p class="list-group-item-text">{{ petition.location }}</p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between flex-column">
+          <small>Дата создания: {{ petition.timestamp }}</small>
+          <button
+            class="btn btn-success"
+            [routerLink]="['/petition-item', petition.id_petition]"
+          >
+            Подробнее
+          </button>
+        </div>
+      </a>
+    </div>
   </div>
 </div>

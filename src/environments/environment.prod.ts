@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: "http://beauty.std-709.ist.mospolytech.ru",
+  baseUrl: "http://comfortable-city.std-709.ist.mospolytech.ru",
 };

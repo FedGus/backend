@@ -4,7 +4,7 @@ const mysql = require("mysql2");
 const dbConfig = require("./db.config.js");
 const history = require("connect-history-api-fallback");
 const app = express();
-const port = 8085;
+const port = process.env.PORT || 8085;
 
 // Парсинг json
 app.use(bodyParser.json());
@@ -34,15 +34,26 @@ app.use(function (req, res, next) {
 
 // Создание соединения с базой данных
 let connection;
-connection = mysql.createPool({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  port: dbConfig.PORT,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB,
-  charset: "utf8_general_ci",
-  connectionLimit: 10,
-});
+if (process.env.NODE_ENV === "production") {
+  connection = mysql.createPool({
+    host: dbConfig.PROD.HOST,
+    user: dbConfig.PROD.USER,
+    port: dbConfig.PORT,
+    password: dbConfig.PROD.PASSWORD,
+    database: dbConfig.PROD.DB,
+    charset: "utf8_general_ci",
+    connectionLimit: 10,
+  });
+} else {
+  connection = mysql.createPool({
+    host: dbConfig.HOST,
+    user: dbConfig.USER,
+    password: dbConfig.PASSWORD,
+    database: dbConfig.DB,
+    charset: "utf8_general_ci",
+    connectionLimit: 10,
+  });
+}
 
 connection.getConnection((err, connect) => {
   if (err) {
@@ -177,7 +188,15 @@ app.get('/api/petitions/:id', function (req, res) {
 
 });
 
-// Информирование о запуске сервера и его порте
-app.listen(port, () => {
-  console.log("Сервер запущен на http://localhost:" + port);
-});
+
+if (process.env.NODE_ENV === "production") {
+  // Информирование о запуске сервера и его порте
+  app.listen(port, "0.0.0.0", () => {
+    console.log("Сервер запущен на http://0.0.0.0:" + port);
+  });
+} else {
+  // Информирование о запуске сервера и его порте
+  app.listen(port, () => {
+    console.log("Сервер запущен на http://localhost:" + port);
+  });
+}

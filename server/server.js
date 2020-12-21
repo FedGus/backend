@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === "production") {
   connection = mysql.createPool({
     host: dbConfig.PROD.HOST,
     user: dbConfig.PROD.USER,
-    port: dbConfig.PORT,
+    port: dbConfig.PROD.PORT,
     password: dbConfig.PROD.PASSWORD,
     database: dbConfig.PROD.DB,
     charset: "utf8_general_ci",

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: "https://comfortable-city.herokuapp.com",
+  baseUrl: "http://comfortable-city.std-709.ist.mospolytech.ru/",
 };

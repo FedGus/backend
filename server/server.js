@@ -4,7 +4,7 @@ const mysql = require("mysql2");
 const dbConfig = require("./db.config.js");
 const history = require("connect-history-api-fallback");
 const app = express();
-const port = process.env.PORT || 8085;
+const port = process.env.PORT || 8086;
 
 // Парсинг json
 app.use(bodyParser.json());
@@ -48,6 +48,7 @@ if (process.env.NODE_ENV === "production") {
   connection = mysql.createPool({
     host: dbConfig.HOST,
     user: dbConfig.USER,
+    port: dbConfig.PORT,
     password: dbConfig.PASSWORD,
     database: dbConfig.DB,
     charset: "utf8_general_ci",

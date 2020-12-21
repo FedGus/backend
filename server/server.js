@@ -154,46 +154,49 @@ app.post("/api/registration", (req, res) => {
 });
 
 // Получение списка петиций
-app.get('/api/petitions', function (req, res) {
+app.get("/api/petitions", function (req, res) {
   try {
-    connection.query('SELECT * FROM `Petition` ORDER BY id_petition DESC', function (error, results) {
-      if (error) {
-        res.status(500).send('Ошибка сервера при получении списка петиций')
-        console.log(error);
+    connection.query(
+      "SELECT * FROM `Petition` ORDER BY id_petition DESC",
+      function (error, results) {
+        if (error) {
+          res.status(500).send("Ошибка сервера при получении списка петиций");
+          console.log(error);
+        }
+        console.log("Результаты получения списка петиций");
+        console.log(results);
+        res.json(results);
       }
-      console.log('Результаты получения списка петиций');
-      console.log(results);
-      res.json(results);
-    });
-  } catch (error) { 
+    );
+  } catch (error) {
     console.log(error);
   }
-
 });
 
 // Получение петиции по id
-app.get('/api/petitions/:id', function (req, res) {
+app.get("/api/petitions/:id", function (req, res) {
   try {
-    connection.query(`SELECT * FROM Petition WHERE id_petition="${req.params.id}"`, function (error, results) {
-      if (error) {
-        res.status(500).send('Ошибка сервера при получении петиции')
-        console.log(error);
+    connection.query(
+      `SELECT * FROM Petition WHERE id_petition="${req.params.id}"`,
+      function (error, results) {
+        if (error) {
+          res.status(500).send("Ошибка сервера при получении петиции");
+          console.log(error);
+        }
+        console.log("Результаты получения петиции");
+        console.log(results);
+        res.json(results);
       }
-      console.log('Результаты получения петиции');
-      console.log(results);
-      res.json(results);
-    });
-  } catch (error) { 
+    );
+  } catch (error) {
     console.log(error);
   }
-
 });
-
 
 if (process.env.NODE_ENV === "production") {
   // Информирование о запуске сервера и его порте
-  app.listen(port, "0.0.0.0", () => {
-    console.log("Сервер запущен на http://0.0.0.0:" + port);
+  app.listen(port, () => {
+    console.log("Сервер запущен на http://localhost:" + port);
   });
 } else {
   // Информирование о запуске сервера и его порте

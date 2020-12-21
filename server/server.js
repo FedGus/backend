@@ -165,7 +165,7 @@ app.get("/api/petitions", function (req, res) {
         }
         console.log("Результаты получения списка петиций");
         console.log(results);
-        res.json(results);
+        res.json({ petition: results });
       }
     );
   } catch (error) {
@@ -185,7 +185,7 @@ app.get("/api/petitions/:id", function (req, res) {
         }
         console.log("Результаты получения петиции");
         console.log(results);
-        res.json(results);
+        res.json({ petition: results });
       }
     );
   } catch (error) {

@@ -5,11 +5,10 @@ const dbConfig = require("./db.config.js");
 const history = require("connect-history-api-fallback");
 const app = express();
 const port = process.env.PORT || 8086;
+const serveStatic = require("serve-static");
 
 // Парсинг json
 app.use(bodyParser.json());
-
-app.use(history());
 
 // Парсинг запросов по типу: application/x-www-form-urlencoded
 app.use(
@@ -193,11 +192,15 @@ app.get("/api/petitions/:id", function (req, res) {
   }
 });
 
+app.use(history());
+
 if (process.env.NODE_ENV === "production") {
   // Информирование о запуске сервера и его порте
-  app.listen(port, () => {
-    console.log("Сервер запущен на http://localhost:" + port);
-  });
+  app
+    .use("/", serveStatic(path.join(__dirname, "../dist/project")))
+    .listen(port, () => {
+      console.log("Сервер запущен на http://localhost:" + port);
+    });
 } else {
   // Информирование о запуске сервера и его порте
   app.listen(port, () => {

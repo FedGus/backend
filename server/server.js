@@ -95,7 +95,8 @@ app.post("/api/login", (req, res) => {
         if (results[0] === undefined) {
           res.json("not exist");
         } else {
-          res.json(results);
+          console.log(results[0]);
+          res.json(results[0]);
         }
       }
     }

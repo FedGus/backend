@@ -140,8 +140,8 @@ app.post("/api/registration", (req, res) => {
                     );
                   console.log(err);
                 } else {
-                  console.log(result);
-                  res.json(result);
+                  console.log(result[0]);
+                  res.json(result[0]);
                 }
               }
             );

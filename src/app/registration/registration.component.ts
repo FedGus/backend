@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MainService } from '../shared/services/main.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MainService } from "../shared/services/main.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-registration",
@@ -36,7 +36,11 @@ export class RegistrationComponent implements OnInit {
   // Функция входа, отправляющая данные, полученные с формы на сервер, и реагирующая на ответ с сервера
   async onRegistr() {
     localStorage.clear();
-    if (this.form.value.login == "" || this.form.value.name == "" || this.form.value.password == "") {
+    if (
+      this.form.value.login == "" ||
+      this.form.value.name == "" ||
+      this.form.value.password == ""
+    ) {
       this.isEmpty = false;
     } else {
       this.isEmpty = true;
@@ -45,20 +49,25 @@ export class RegistrationComponent implements OnInit {
         login: this.form.value.login,
         password: this.form.value.password,
         name: this.form.value.name,
-        role: "1"
+        role: "1",
       };
       // console.log(infoAboutUser);
       try {
-        let ExistOrNot = await this.api.post(JSON.stringify(infoAboutUser), "/registration");
+        let ExistOrNot: any;
+
+        ExistOrNot = await this.api.post(
+          JSON.stringify(infoAboutUser),
+          "/registration"
+        );
         this.form.reset();
         if (ExistOrNot != "exist") {
-          // console.log(ExistOrNot);
-          this.user.id = ExistOrNot[0].id;
-          this.user.login = ExistOrNot[0].login;
-          this.user.password = ExistOrNot[0].password;
-          this.user.name = ExistOrNot[0].name;
-          this.user.role = ExistOrNot[0].role;
-          // console.log(this.user);
+          console.log(ExistOrNot);
+          this.user.id = ExistOrNot.id;
+          this.user.login = ExistOrNot.login;
+          this.user.password = ExistOrNot.password;
+          this.user.name = ExistOrNot.name;
+          this.user.role = ExistOrNot.role;
+          console.log(this.user);
           localStorage.setItem("role", this.user.role);
           localStorage.setItem("id", this.user.id);
           localStorage.setItem("name", this.user.name);

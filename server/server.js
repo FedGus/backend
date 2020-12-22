@@ -194,6 +194,65 @@ app.get("/api/petitions/:id", function (req, res) {
   }
 });
 
+// Добавление комментария к петиции
+app.post("/api/addComment", (req, res) => {
+  if (!req.body) return res.sendStatus(400);
+  console.log("Пришёл POST запрос для создания комментария:");
+  console.log(req.body);
+  connection.query(
+    `INSERT INTO Comment (content, id_petition, id_user) VALUES (?, ?, ?);`,
+    [req.body.content, req.body.id_petition, req.body.id_user],
+    function (err) {
+      if (err) {
+        res.status(500).send("Ошибка сервера при cоздании комментария");
+        console.log(err);
+      }
+      console.log("Создание прошло успешно");
+      res.json("create");
+    }
+  );
+});
+
+// Обработка удаления комментария
+app.delete("/api/deleteComment/:id_comment", (req, res) => {
+  if (!req.body) return res.sendStatus(400);
+  console.log('Пришёл DELETE запрос для удаления комментария:');
+  console.log(req.body);
+  connection.query(`DELETE FROM Comment WHERE id_comment=${req.params.id_comment}`,
+    function (err) {
+      if (err) {
+        res.status(500).send('Ошибка сервера при удалении комментария по id')
+        console.log(err);
+      }
+      console.log('Удаление прошло успешно');
+      res.json("delete");
+    });
+})
+
+// Получение комментариев к петиции
+app.post("/api/getPetitionComment", (req, res) => {
+  if (!req.body) return res.sendStatus(400);
+  console.log('Пришёл POST запрос для загрузки комментариев к петиции:');
+  console.log(req.body);
+  try {
+    connection.query('SELECT * FROM Comment WHERE id_petition=?;',
+    [req.body.id_petition],
+      function (err, results) {
+        if (err) {
+          res.status(500).send('Ошибка сервера при поиске комментариев к петиции по id ')
+          console.log(err);
+        }
+        console.log('Мастер найден успешно');
+        console.log('Результаты:');
+        console.log(results);
+        res.json(results);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+
 app.use(history());
 
 if (process.env.NODE_ENV === "production") {

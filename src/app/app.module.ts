@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { PetitionListComponent } from './petition-list/petition-list.component';
 import { PetitionItemComponent } from './petition-item/petition-item.component';
 import { CategorySortPipe } from './shared/pipe/category-sort.pipe';
+import { AddPetitionComponent } from './add-petition/add-petition.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CategorySortPipe } from './shared/pipe/category-sort.pipe';
     PetitionListComponent,
     PetitionItemComponent,
     CategorySortPipe,
+    AddPetitionComponent,
   ],
   imports: [
     BrowserModule,

@@ -193,6 +193,21 @@ app.get("/api/petitions/:id", function (req, res) {
   }
 });
 
+// Добавление петиции
+app.post("/api/add-petition", (req, res) => {
+  connection.query(`INSERT INTO Petition (title, image, content, id_category, id_object, id_status, id_user, address) 
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
+  [req.body.title, req.body.image, req.body.content, req.body.id_category, req.body.id_object, req.body.id_status, req.body.id_user, req.body.address],
+    function (err) {
+      if (err) {
+        res.status(500).send('Ошибка сервера при добавлении петиции')
+        console.log(err);
+      }
+      console.log('Добавление прошло успешно');
+      res.json("create");
+    });
+})
+
 app.use(history());
 
 if (process.env.NODE_ENV === "production") {

@@ -1,4 +1,4 @@
-<h1 class="m-5 text-center">Петиции</h1>
+<h1 class="m-5 text-center">Список петиций</h1>
 <div class="d-flex">
   <div>
     <h3>Фильтры</h3>
@@ -15,7 +15,8 @@
             type="checkbox"
             class="custom-control-input"
             id="check1"
-            [(ngModel)]="category.every"
+            [checked]="category.every"
+            (change)="category.every = !category.every"
           />
           <label class="custom-control-label" for="check1">Все</label>
         </div>
@@ -27,7 +28,8 @@
             type="checkbox"
             class="custom-control-input"
             id="check2"
-            [(ngModel)]="category.remont"
+            [checked]="category.remont"
+            (change)="category.remont = !category.remont"
           />
           <label class="custom-control-label" for="check2"
             >Ремонт и реконструкция</label
@@ -41,7 +43,8 @@
             type="checkbox"
             class="custom-control-input"
             id="check3"
-            [(ngModel)]="category.blago"
+            [checked]="category.blago"
+            (change)="category.blago = !category.blago"
           />
           <label class="custom-control-label" for="check3"
             >Благоустройство</label
@@ -55,7 +58,8 @@
             type="checkbox"
             class="custom-control-input"
             id="check4"
-            [(ngModel)]="category.ozelenenie"
+            [checked]="category.ozelenenie"
+            (change)="category.ozelenenie = !category.ozelenenie"
           />
           <label class="custom-control-label" for="check4">Озеленение</label>
         </div>
@@ -67,7 +71,8 @@
             type="checkbox"
             class="custom-control-input"
             id="check5"
-            [(ngModel)]="category.osvet"
+            [checked]="category.osvet"
+            (change)="category.osvet = !category.osvet"
           />
           <label class="custom-control-label" for="check5">Освещение</label>
         </div>

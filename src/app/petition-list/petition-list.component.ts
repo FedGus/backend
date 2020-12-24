@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorySortPipe } from '../shared/pipe/category-sort.pipe';
 import { MainService } from "../shared/services/main.service";
+import {FormsModule} from '@angular/forms'
 
 @Component({
   selector: 'app-petition-list',
@@ -8,11 +9,12 @@ import { MainService } from "../shared/services/main.service";
   styleUrls: ['./petition-list.component.css']
 })
 export class PetitionListComponent implements OnInit {
-  public category = {every:true, remont:false, blago:false, ozelenenie:false, osvet:false};
+  public category: any;
   petitions: any;
   constructor(private api: MainService) { }
 
   async ngOnInit() {
+    this.category = {every:true, remont:false, blago:false, ozelenenie:false, osvet:false};
     try {
       this.petitions = await this.api.get(
         "/petitions"

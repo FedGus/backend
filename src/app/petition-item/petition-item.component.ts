@@ -9,6 +9,7 @@ import { MainService } from "../shared/services/main.service";
 })
 export class PetitionItemComponent implements OnInit {
   petition: any;
+  result: any;
   id: number;
 
   constructor(private activeRoute: ActivatedRoute, private api: MainService) {
@@ -19,9 +20,10 @@ export class PetitionItemComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.petition = await this.api.get(
+      this.result = await this.api.get(
         "/petitions/" + this.id
       );
+      this.petition = this.result.petition;
       console.log(this.petition)
     }
     catch (error) {

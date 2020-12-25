@@ -9,13 +9,11 @@ import {FormsModule} from '@angular/forms'
   styleUrls: ["./petition-list.component.css"],
 })
 export class PetitionListComponent implements OnInit {
-  public category: any;
   results: any;
   petitions: any;
   constructor(private api: MainService) {}
 
   async ngOnInit() {
-    this.category = {every:true, remont:false, blago:false, ozelenenie:false, osvet:false};
     try {
       this.results = await this.api.get("/petitions");
       this.petitions = this.results.petition;

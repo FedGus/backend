@@ -19,6 +19,7 @@ export class RegistrationComponent implements OnInit {
     login: "",
     password: "",
     name: "",
+    surname: "",
     role: "",
   };
 
@@ -28,6 +29,7 @@ export class RegistrationComponent implements OnInit {
     // Инициализация FormGroup, создание FormControl, и назанчение Validators
     this.form = new FormGroup({
       name: new FormControl("", [Validators.required]),
+      surname: new FormControl("", [Validators.required]),
       login: new FormControl("", [Validators.required]),
       password: new FormControl("", [Validators.required]),
     });
@@ -39,6 +41,7 @@ export class RegistrationComponent implements OnInit {
     if (
       this.form.value.login == "" ||
       this.form.value.name == "" ||
+      this.form.value.surname == "" ||
       this.form.value.password == ""
     ) {
       this.isEmpty = false;
@@ -49,9 +52,10 @@ export class RegistrationComponent implements OnInit {
         login: this.form.value.login,
         password: this.form.value.password,
         name: this.form.value.name,
+        surname: this.form.value.surname,
         role: "1",
       };
-      // console.log(infoAboutUser);
+      console.log(infoAboutUser);
       try {
         let ExistOrNot: any;
 

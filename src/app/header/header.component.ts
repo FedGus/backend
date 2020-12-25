@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit {
         }
       }
       this.name = localStorage.getItem("name");
-      console.log(this.name);
-
       this.logOut = false;
     }
   }

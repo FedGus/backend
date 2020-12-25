@@ -123,8 +123,8 @@ app.post("/api/registration", (req, res) => {
       console.log(results[0]);
       if (results[0] === undefined) {
         connection.query(
-          "INSERT INTO `users` (`id_user`, `login`, `password`, `name`, `role`) VALUES ( NULL,?, ?, ?, ?)",
-          [req.body.login, req.body.password, req.body.name, req.body.role],
+          "INSERT INTO `users` (`id_user`, `login`, `password`, `name`, `surname`, `role`) VALUES ( NULL,?, ?, ?, ?, ?)",
+          [req.body.login, req.body.password, req.body.name, req.body.surname, req.body.role],
           function () {
             console.log(
               "Запрос на проверку существования созданной записи в БД"
@@ -174,7 +174,7 @@ app.get("/api/petitions", function (req, res) {
   }
 });
 
-// Получение петиции по id
+// Получение одной петиции по id
 app.get("/api/petitions/:id", function (req, res) {
   try {
     connection.query(

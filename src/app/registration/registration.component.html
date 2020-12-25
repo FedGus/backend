@@ -9,6 +9,14 @@
       class="form-control mb-3"
       placeholder="Имя"
     />
+    <label for="surname">Введите фамилию</label>
+    <input
+      (focus)="onFlag()"
+      formControlName="surname"
+      type="text"
+      class="form-control mb-3"
+      placeholder="Фамилия"
+    />
     <label for="name">Введите логин</label>
     <input
       (focus)="onFlag()"

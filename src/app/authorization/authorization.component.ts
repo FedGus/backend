@@ -19,6 +19,7 @@ export class AuthorizationComponent implements OnInit {
     login: "",
     password: "",
     name: "",
+    surname: "",
     role: "",
   };
 
@@ -59,14 +60,15 @@ export class AuthorizationComponent implements OnInit {
           this.user.login = ExistOrNot.login;
           this.user.password = ExistOrNot.password;
           this.user.name = ExistOrNot.name;
+          this.user.surname = ExistOrNot.surname;
           this.user.role = ExistOrNot.role;
-          // console.log(this.user);
+
           this.notExistLoginOrPassword = true;
           localStorage.setItem("role", this.user.role);
           localStorage.setItem("id", this.user.id);
           localStorage.setItem("name", this.user.name);
+          localStorage.setItem("surname", this.user.surname);
           this.router.navigate(["/"]);
-          console.log(this.user);
         } else {
           this.notExistLoginOrPassword = false;
           console.log("Неверный логин или пароль");

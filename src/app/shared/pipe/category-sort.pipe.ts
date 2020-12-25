@@ -6,15 +6,36 @@ import { isNullOrUndefined } from 'util';
 })
 export class CategorySortPipe implements PipeTransform {
 
-transform(petitions: any,category:any): any {
-        if(category.every){
-            return petitions;
-        }
+  transform(petitions, sort = 'every') {
+    if (!isNullOrUndefined(petitions) && ((sort).trim()) !== "") {
+      if (sort == 'every') {
+        return petitions;
+      }
+      if (sort == 'remont') {
+        let petition = petitions.filter(
+          petitions => petitions.id_category === 1
+        );
+        return petition;
+      }
+      else if (sort == 'blago') {
+        let petition = petitions.filter(
+          petitions => petitions.id_category === 2
+        );
+        return petition;
+      }
+      else if (sort == 'ozelenenie') {
+        let petition = petitions.filter(
+          petitions => petitions.id_category === 3
+        );
+        return petition;
+      }
+      else if (sort == 'osvet') {
+        let petition = petitions.filter(
+          petitions => petitions.id_category === 4
+        );
+        return petition;
+      }
 
-        return petitions.filter(petition => 
-                                (category.remont && petition.id_category==1) 
-                                || (category.blago && petition.id_category==2)
-          || (category.ozelenenie && petition.id_category == 3)
-        || (category.osvet && petition.id_category==4))
     }
+  }
 }

@@ -1,4 +1,4 @@
-<h1 class="m-5 text-center">Петиции</h1>
+<h1 class="m-5 text-center">Список петиций</h1>
 <div class="d-flex">
   <div>
     <h3>Фильтры</h3>
@@ -7,72 +7,13 @@
 
     <p class="font-weight-bold">Категории</p>
 
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <!-- Default checked -->
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="check1"
-            [(ngModel)]="category.every"
-          />
-          <label class="custom-control-label" for="check1">Все</label>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <!-- Default checked -->
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="check2"
-            [(ngModel)]="category.remont"
-          />
-          <label class="custom-control-label" for="check2"
-            >Ремонт и реконструкция</label
-          >
-        </div>
-      </li>
-      <li class="list-group-item">
-        <!-- Default checked -->
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="check3"
-            [(ngModel)]="category.blago"
-          />
-          <label class="custom-control-label" for="check3"
-            >Благоустройство</label
-          >
-        </div>
-      </li>
-      <li class="list-group-item">
-        <!-- Default checked -->
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="check4"
-            [(ngModel)]="category.ozelenenie"
-          />
-          <label class="custom-control-label" for="check4">Озеленение</label>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <!-- Default checked -->
-        <div class="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            class="custom-control-input"
-            id="check5"
-            [(ngModel)]="category.osvet"
-          />
-          <label class="custom-control-label" for="check5">Освещение</label>
-        </div>
-      </li>
-    </ul>
+    <select class="form-control selectpicker" [(ngModel)]="category">
+      <option [ngValue]="every" selected>Показать все</option>
+      <option [ngValue]="remont" value="remont">Ремонт и реконструкция</option>
+      <option [ngValue]="blago" value="blago">Благоустройство</option>
+      <option [ngValue]="ozelenenie" value="ozelenenie">Озеленение</option>
+      <option [ngValue]="osvet" value="osvet">Освещение</option>
+    </select>
   </div>
 
   <div class="container">

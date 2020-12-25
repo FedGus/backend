@@ -16,6 +16,7 @@ import { PetitionListComponent } from './petition-list/petition-list.component';
 import { PetitionItemComponent } from './petition-item/petition-item.component';
 import { CategorySortPipe } from './shared/pipe/category-sort.pipe';
 import { ProfileComponent } from './profile/profile.component';
+import { AddPetitionComponent } from './add-petition/add-petition.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProfileComponent } from './profile/profile.component';
     PetitionItemComponent,
     CategorySortPipe,
     ProfileComponent,
+    AddPetitionComponent,
   ],
   imports: [
     BrowserModule,

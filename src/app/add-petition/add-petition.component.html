@@ -1,3 +1,71 @@
 <div class="container">
   <h1 class="m-5 text-center">Создать петицию</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Тема петиции:<sup>*</sup></label>
+      <input
+        type="text"
+        name="title"
+        class="form-control mb-3"
+        formControlName="title"
+        placeholder="Введите тему петиции"
+      />
+      <label for="image">Загрузите фотографию:</label>
+      <input
+        type="file"
+        name="image"
+        class="form-control mb-3"
+        formControlName="image"
+      />
+      <label for="content">Описание:<sup>*</sup></label>
+      <textarea
+        name="content"
+        cols="30"
+        rows="3"
+        class="form-control mb-3"
+        formControlName="content"
+        placeholder="Введите описание петиции"
+      ></textarea>
+      <label for="id_сategory">Выберите категорию:<sup>*</sup></label>
+      <select
+        name="id_сategory"
+        class="form-control mb-3"
+        formControlName="id_category"
+      >
+        <option value="1" selected>Ремонт и реконструкция</option>
+        <option value="2">Благоустройство</option>
+        <option value="3">Озеленение</option>
+        <option value="4">Освещение</option>
+      </select>
+      <label for="id_object">Выберите объект:<sup>*</sup></label>
+      <select
+        name="id_object"
+        class="form-control mb-3"
+        formControlName="id_object"
+      >
+        <option value="1" selected>Дворовые территории</option>
+        <option value="2">Многоквартирные дома</option>
+        <option value="3">Дома</option>
+        <option value="4">Поликлиники</option>
+        <option value="5">Парки</option>
+        <option value="6">Летние кафе</option>
+        <option value="7">Школы</option>
+        <option value="8">Торговые объекты</option>
+      </select>
+      <label for="address">Введите адрес:<sup>*</sup></label>
+      <input
+        type="text"
+        name="address"
+        class="form-control mb-3"
+        formControlName="address"
+        placeholder="Введите адрес"
+      />
+      <p><sup>*</sup> - Необходимые поля для заполнения</p>
+      <div class="col text-right mt-5">
+        <button class="btn btn-dark" type="submit" [disabled]="form.invalid">
+          Создать петицию
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

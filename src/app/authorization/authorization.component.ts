@@ -56,7 +56,7 @@ export class AuthorizationComponent implements OnInit {
         this.form.reset();
 
         if (ExistOrNot != "not exist") {
-          this.user.id = ExistOrNot.id;
+          this.user.id = ExistOrNot.id_user;
           this.user.login = ExistOrNot.login;
           this.user.password = ExistOrNot.password;
           this.user.name = ExistOrNot.name;

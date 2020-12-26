@@ -124,7 +124,13 @@ app.post("/api/registration", (req, res) => {
       if (results[0] === undefined) {
         connection.query(
           "INSERT INTO `users` (`id_user`, `login`, `password`, `name`, `surname`, `role`) VALUES ( NULL,?, ?, ?, ?, ?)",
-          [req.body.login, req.body.password, req.body.name, req.body.surname, req.body.role],
+          [
+            req.body.login,
+            req.body.password,
+            req.body.name,
+            req.body.surname,
+            req.body.role,
+          ],
           function () {
             console.log(
               "Запрос на проверку существования созданной записи в БД"
@@ -196,18 +202,30 @@ app.get("/api/petitions/:id", function (req, res) {
 
 // Добавление петиции
 app.post("/api/add-petition", (req, res) => {
-  connection.query(`INSERT INTO Petition (title, image, content, id_category, id_object, id_status, id_user, latitude, longitude, address) 
+  connection.query(
+    `INSERT INTO Petition (title, image, content, id_category, id_object, id_status, id_user, latitude, longitude, address) 
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
-  [req.body.title, req.body.image, req.body.content, req.body.id_category, req.body.id_object, 1, 1, "", "", req.body.address],
+    [
+      req.body.title,
+      req.body.image,
+      req.body.content,
+      req.body.id_category,
+      req.body.id_object,
+      1,
+      1,
+      "",
+      "",
+      req.body.address,
+    ],
     function (err) {
       if (err) {
-        res.status(500).send('Ошибка сервера при добавлении петиции')
+        res.status(500).send("Ошибка сервера при добавлении петиции");
         console.log(err);
-      }
-      else console.log('Добавление прошло успешно');
+      } else console.log("Добавление прошло успешно");
       res.json("create");
-    });
-})
+    }
+  );
+});
 
 // Добавление комментария к петиции
 app.post("/api/addComment", (req, res) => {
@@ -231,41 +249,76 @@ app.post("/api/addComment", (req, res) => {
 // Обработка удаления комментария
 app.delete("/api/deleteComment/:id_comment", (req, res) => {
   if (!req.body) return res.sendStatus(400);
-  console.log('Пришёл DELETE запрос для удаления комментария:');
+  console.log("Пришёл DELETE запрос для удаления комментария:");
   console.log(req.body);
-  connection.query(`DELETE FROM Comment WHERE id_comment=${req.params.id_comment}`,
+  connection.query(
+    `DELETE FROM Comment WHERE id_comment=${req.params.id_comment}`,
     function (err) {
       if (err) {
-        res.status(500).send('Ошибка сервера при удалении комментария по id')
+        res.status(500).send("Ошибка сервера при удалении комментария по id");
         console.log(err);
       }
-      console.log('Удаление прошло успешно');
+      console.log("Удаление прошло успешно");
       res.json("delete");
-    });
-})
+    }
+  );
+});
 
 // Получение комментариев к петиции
 app.post("/api/getPetitionComment", (req, res) => {
   if (!req.body) return res.sendStatus(400);
-  console.log('Пришёл POST запрос для загрузки комментариев к петиции:');
+  console.log("Пришёл POST запрос для загрузки комментариев к петиции:");
   console.log(req.body);
   try {
-    connection.query('SELECT * FROM Comment WHERE id_petition=?;',
-    [req.body.id_petition],
+    connection.query(
+      "SELECT * FROM Comment WHERE id_petition=?;",
+      [req.body.id_petition],
       function (err, results) {
         if (err) {
-          res.status(500).send('Ошибка сервера при поиске комментариев к петиции по id ')
+          res
+            .status(500)
+            .send("Ошибка сервера при поиске комментариев к петиции по id ");
           console.log(err);
         }
-        console.log('Мастер найден успешно');
-        console.log('Результаты:');
+        console.log("Мастер найден успешно");
+        console.log("Результаты:");
         console.log(results);
         res.json(results);
-      });
+      }
+    );
   } catch (error) {
     console.log(error);
   }
-})
+});
+
+// Обработка изменения информации в личном кабинете
+app.put("/api/updateUser", function (req, res) {
+  console.log("PUT /");
+  console.log(req.body);
+  try {
+    connection.query(
+      "UPDATE `users` SET `name` = ?, `surname` = ?, `login` = ?, `password` = ? WHERE id_user  = ?",
+      [
+        req.body.name,
+        req.body.surname,
+        req.body.login,
+        req.body.password,
+        req.body.id_user,
+      ],
+      function (error) {
+        if (error) {
+          res
+            .status(500)
+            .send("Ошибка сервера при обновлении личного кабинета");
+          console.log(error);
+        }
+        res.json("change");
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.use(history());
 

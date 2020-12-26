@@ -4,7 +4,7 @@ import { RegistrationComponent } from "./registration/registration.component";
 import { AuthorizationComponent } from "./authorization/authorization.component";
 import { PetitionListComponent } from "./petition-list/petition-list.component";
 import { PetitionItemComponent } from "./petition-item/petition-item.component";
-import { AddPetitionComponent} from "./add-petition/add-petition.component";
+import { AddPetitionComponent } from "./add-petition/add-petition.component";
 import { MainComponent } from "./main/main.component";
 
 const routes: Routes = [

@@ -11,6 +11,12 @@ import {FormsModule} from '@angular/forms'
 export class PetitionListComponent implements OnInit {
   results: any;
   petitions: any;
+  every: any;
+  remont: any;
+  blago: any;
+  ozelenenie: any;
+  osvet: any;
+  category: any;
   constructor(private api: MainService) {}
 
   async ngOnInit() {

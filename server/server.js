@@ -265,14 +265,13 @@ app.delete("/api/deleteComment/:id_comment", (req, res) => {
 });
 
 // Получение комментариев к петиции
-app.post("/api/getPetitionComment", (req, res) => {
+app.get("/api/getPetitionComment/:id_petition", (req, res) => {
   if (!req.body) return res.sendStatus(400);
   console.log("Пришёл POST запрос для загрузки комментариев к петиции:");
-  console.log(req.body);
   try {
     connection.query(
       "SELECT * FROM Comment WHERE id_petition=?;",
-      [req.body.id_petition],
+      [req.params.id_petition],
       function (err, results) {
         if (err) {
           res
@@ -280,7 +279,6 @@ app.post("/api/getPetitionComment", (req, res) => {
             .send("Ошибка сервера при поиске комментариев к петиции по id ");
           console.log(err);
         }
-        console.log("Мастер найден успешно");
         console.log("Результаты:");
         console.log(results);
         res.json({ comment: results });
@@ -313,6 +311,46 @@ app.put("/api/updateUser", function (req, res) {
           console.log(error);
         }
         res.json("change");
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Добавление подписи к петиции
+app.post("/api/addSignature", (req, res) => {
+  if (!req.body) return res.sendStatus(400);
+  console.log("Пришёл POST запрос для создания подписи:");
+  console.log(req.body);
+  connection.query(
+    `INSERT INTO Signature (id_user, id_petition) VALUES (?, ?);`,
+    [req.body.id_user, req.body.id_petition],
+    function (err) {
+      if (err) {
+        res.status(500).send("Ошибка сервера при cоздании подписи");
+        console.log(err);
+      }
+      console.log("Создание прошло успешно");
+      res.json("create");
+    }
+  );
+});
+
+// Получение количества подписей к петиции
+app.get("/api/getSignatures/:id_petition", function (req, res) {
+  try {
+    connection.query(
+      "SELECT COUNT(*) as countSignatures FROM Signature WHERE id_petition=?",
+      [req.params.id_petition],
+      function (error, results) {
+        if (error) {
+          res.status(500).send("Ошибка сервера при подписей к петиции");
+          console.log(error);
+        }
+        console.log("Результаты получения количества подписей к петиции");
+        console.log(results);
+        res.json(results[0]);
       }
     );
   } catch (error) {

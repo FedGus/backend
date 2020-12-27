@@ -283,7 +283,7 @@ app.post("/api/getPetitionComment", (req, res) => {
         console.log("Мастер найден успешно");
         console.log("Результаты:");
         console.log(results);
-        res.json(results);
+        res.json({ comment: results });
       }
     );
   } catch (error) {

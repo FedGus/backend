@@ -267,7 +267,7 @@ app.delete("/api/deleteComment/:id_comment", (req, res) => {
 // Получение комментариев к петиции
 app.get("/api/getPetitionComment/:id_petition", (req, res) => {
   if (!req.body) return res.sendStatus(400);
-  console.log("Пришёл POST запрос для загрузки комментариев к петиции:");
+  console.log("Пришёл GET запрос для загрузки комментариев к петиции:");
   try {
     connection.query(
       "SELECT * FROM Comment WHERE id_petition=?;",
@@ -282,6 +282,31 @@ app.get("/api/getPetitionComment/:id_petition", (req, res) => {
         console.log("Результаты:");
         console.log(results);
         res.json({ comment: results });
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Получение имени и фамилии автора комментария
+app.get("/api/getAuthorCommentName/:id_comment", (req, res) => {
+  if (!req.body) return res.sendStatus(400);
+  console.log("Пришёл GET запрос для получения имени и фамилии автора комментария:");
+  try {
+    connection.query(
+      "SELECT name, surname FROM Comment INNER JOIN users ON Comment.id_user=users.id_user WHERE id_comment=?;",
+      [req.params.id_comment],
+      function (err, results) {
+        if (err) {
+          res
+            .status(500)
+            .send("Ошибка сервера при получения имени и фамилии автора комментария");
+          console.log(err);
+        }
+        console.log("Результаты:");
+        console.log(results);
+        res.json(results[0]);
       }
     );
   } catch (error) {
@@ -345,10 +370,39 @@ app.get("/api/getSignatures/:id_petition", function (req, res) {
       [req.params.id_petition],
       function (error, results) {
         if (error) {
-          res.status(500).send("Ошибка сервера при подписей к петиции");
+          res
+            .status(500)
+            .send("Ошибка сервера при получения количества подписей к петиции");
           console.log(error);
         }
         console.log("Результаты получения количества подписей к петиции");
+        console.log(results);
+        res.json(results[0]);
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Получение информации о том, что пользователь подписал петицию
+app.get("/api/getUserSignature/:id_petition/:id_user", function (req, res) {
+  try {
+    connection.query(
+      "SELECT * FROM Signature WHERE id_petition=? AND id_user=?",
+      [req.params.id_petition, req.params.id_user],
+      function (error, results) {
+        if (error) {
+          res
+            .status(500)
+            .send(
+              "Ошибка сервера при получении информации о подписи определенного пользователя к определенной петиции"
+            );
+          console.log(error);
+        }
+        console.log(
+          "Вывод подписи определенного пользователя к определенной петиции"
+        );
         console.log(results);
         res.json(results[0]);
       }

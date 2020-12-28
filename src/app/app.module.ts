@@ -15,8 +15,10 @@ import { FormsModule } from "@angular/forms";
 import { PetitionListComponent } from './petition-list/petition-list.component';
 import { PetitionItemComponent } from './petition-item/petition-item.component';
 import { CategorySortPipe } from './shared/pipe/category-sort.pipe';
+import { ObjectSortPipe} from './shared/pipe/object-sort.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { AddPetitionComponent } from './add-petition/add-petition.component';
+import { StatusSortPipe } from './shared/pipe/status-sort.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AddPetitionComponent } from './add-petition/add-petition.component';
     CategorySortPipe,
     ProfileComponent,
     AddPetitionComponent,
+    ObjectSortPipe,
+    StatusSortPipe
   ],
   imports: [
     BrowserModule,

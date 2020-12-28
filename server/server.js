@@ -212,7 +212,7 @@ app.post("/api/add-petition", (req, res) => {
       req.body.id_category,
       req.body.id_object,
       1,
-      1,
+      req.body.id_user,
       "",
       "",
       req.body.address,

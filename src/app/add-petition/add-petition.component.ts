@@ -16,7 +16,8 @@ export class AddPetitionComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.form = new FormGroup({
+    this.form = new FormGroup({
+      id_user: new FormControl({value: localStorage.getItem("id"), disabled: this.disabled }),
       title: new FormControl( { value: '', disabled: this.disabled } , [Validators.required]),
       image: new FormControl( { value: '', disabled: this.disabled }),
       content: new FormControl({ value: '', disabled: this.disabled }, [Validators.required]),

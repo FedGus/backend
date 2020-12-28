@@ -1,24 +1,90 @@
 <h1 class="m-5 text-center">Список петиций</h1>
 <div class="d-flex">
-  <div>
+  <div class="w-25">
     <h3>Фильтры</h3>
 
     <hr />
 
     <p class="font-weight-bold">Категории</p>
 
-    <select class="form-control selectpicker" [(ngModel)]="category">
-      <option [ngValue]="every" selected>Показать все</option>
-      <option [ngValue]="remont" value="remont">Ремонт и реконструкция</option>
-      <option [ngValue]="blago" value="blago">Благоустройство</option>
-      <option [ngValue]="ozelenenie" value="ozelenenie">Озеленение</option>
-      <option [ngValue]="osvet" value="osvet">Освещение</option>
+    <select class="form-control selectpicker mb-5" [(ngModel)]="category">
+      <option class="form-control" [ngValue]="every" selected>
+        Показать все
+      </option>
+      <option class="form-control" [ngValue]="remont" value="remont">
+        Ремонт и реконструкция
+      </option>
+      <option class="form-control" [ngValue]="blago" value="blago">
+        Благоустройство
+      </option>
+      <option class="form-control" [ngValue]="ozelenenie" value="ozelenenie">
+        Озеленение
+      </option>
+      <option class="form-control" [ngValue]="osvet" value="osvet">
+        Освещение
+      </option>
+    </select>
+
+    <p class="font-weight-bold">Объекты</p>
+
+    <select class="form-control selectpicker mb-5" [(ngModel)]="object">
+      <option class="form-control" [ngValue]="every" selected>
+        Показать все
+      </option>
+      <option class="form-control" [ngValue]="dvor" value="dvor">
+        Дворовые территории
+      </option>
+      <option class="form-control" [ngValue]="houses" value="houses">
+        Многоквартирные дома
+      </option>
+      <option class="form-control" [ngValue]="rode" value="rode">Дороги</option>
+      <option class="form-control" [ngValue]="policlinik" value="policlinik">
+        Поликлиники
+      </option>
+      <option class="form-control" [ngValue]="park" value="park">Парки</option>
+      <option class="form-control" [ngValue]="cafe" value="cafe">
+        Летние кафе
+      </option>
+      <option class="form-control" [ngValue]="schools" value="schools">
+        Школы
+      </option>
+      <option class="form-control" [ngValue]="torg" value="torg">
+        Торговые объекты
+      </option>
+    </select>
+
+    <p class="font-weight-bold">Статус</p>
+
+    <select class="form-control selectpicker" [(ngModel)]="status">
+      <option class="form-control" [ngValue]="every" selected>
+        Показать все
+      </option>
+      <option class="form-control" [ngValue]="active" value="active">
+        Активные
+      </option>
+      <option class="form-control" [ngValue]="progress" value="progress">
+        Выполняются
+      </option>
+      <option class="form-control" [ngValue]="stop" value="stop">
+        Остановленные
+      </option>
+      <option class="form-control" [ngValue]="end" value="end">
+        Завершенные
+      </option>
+      <option class="form-control" [ngValue]="passive" value="passive">
+        Пассивные
+      </option>
     </select>
   </div>
 
   <div class="container">
     <div
-      *ngFor="let petition of petitions | categorySort: category"
+      *ngFor="
+        let petition of petitions
+          | categorySort: category
+          | objectSort: object
+          | statusSort: status
+      "
       class="list-group mt-4"
     >
       <a

@@ -17,6 +17,22 @@ export class PetitionListComponent implements OnInit {
   ozelenenie: any;
   osvet: any;
   category: any;
+  object: any;
+  dvor: any;
+  houses: any;
+  rode: any;
+  policlinik: any;
+  park: any;
+  cafe: any;
+  schools: any;
+  torg: any;
+  status: any;
+  active: any;
+  progress: any;
+  stop: any;
+  end: any;
+  passive: any;
+  
   constructor(private api: MainService) {}
 
   async ngOnInit() {

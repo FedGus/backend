@@ -117,8 +117,8 @@ app.post('/upload-photo/', async (req, res) => {
 //Получение полного пути файла
 app.get("/api/photo/:filename", (req, res) => {
   console.log(path.join(__dirname, "uploads", req.params.filename));
-  res.sendFile(path.join(__dirname, "uploads", req.params.filename))
-})
+  res.sendFile(path.join(__dirname, "uploads", req.params.filename));
+});
 
 
 // Авторизация пользователя
@@ -248,11 +248,11 @@ app.get("/api/petitions/:id", function (req, res) {
 // Добавление петиции
 app.post("/api/add-petition", (req, res) => {
   connection.query(
-    `INSERT INTO Petition (title, image, content, id_category, id_object, id_status, id_user, latitude, longitude, address) 
+    `INSERT INTO Petition (title, filename, content, id_category, id_object, id_status, id_user, latitude, longitude, address) 
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
     [
       req.body.title,
-      req.body.image,
+      req.body.filename,
       req.body.content,
       req.body.id_category,
       req.body.id_object,

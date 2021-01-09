@@ -19,7 +19,7 @@ export class AddPetitionComponent implements OnInit {
     this.form = new FormGroup({
       id_user: new FormControl({value: localStorage.getItem("id"), disabled: this.disabled }),
       title: new FormControl( { value: '', disabled: this.disabled } , [Validators.required]),
-      image: new FormControl( { value: '', disabled: this.disabled }),
+      filename: new FormControl( { value: '', disabled: this.disabled }),
       content: new FormControl({ value: '', disabled: this.disabled }, [Validators.required]),
       id_category: new FormControl({ value: 1, disabled: this.disabled }, [Validators.required]),
       id_object: new FormControl({ value: 1, disabled: this.disabled }, [Validators.required]),

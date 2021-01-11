@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { CategorySortPipe } from "../shared/pipe/category-sort.pipe";
 import { MainService } from "../shared/services/main.service";
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: "app-petition-list",
@@ -32,6 +33,7 @@ export class PetitionListComponent implements OnInit {
   stop: any;
   end: any;
   passive: any;
+  srcPhoto = environment.baseUrl + '/api/photo/';
   
   constructor(private api: MainService) {}
 
@@ -43,5 +45,7 @@ export class PetitionListComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+
   }
+
 }

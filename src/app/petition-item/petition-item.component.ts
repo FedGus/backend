@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MainService } from "../shared/services/main.service";
-
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-petition-item',
   templateUrl: './petition-item.component.html',
@@ -11,6 +11,7 @@ export class PetitionItemComponent implements OnInit {
   petition: any;
   result: any;
   id: number;
+  srcPhoto = environment.baseUrl + '/api/photo/';
 
   constructor(private activeRoute: ActivatedRoute, private api: MainService) {
     this.activeRoute.params.subscribe(param => {

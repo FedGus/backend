@@ -2,7 +2,7 @@
   <h1 class="m-5 text-center">Подробная информация о петиции</h1>
   <div *ngFor="let petition of petition">
     <img
-      src="{{ petition.filename }}"
+      [src]="srcPhoto + petition.filename"
       alt="photo"
       class="img-responsive img-thumbnail"
     />

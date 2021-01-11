@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Data, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { MainService } from "../shared/services/main.service";
 
 @Component({
@@ -12,7 +13,7 @@ export class AddPetitionComponent implements OnInit {
   form: FormGroup;
   disabled = false;
 
-  constructor(private router:Router, private api: MainService) {
+  constructor(private router: Router, private api: MainService) {
   }
 
   ngOnInit() {
@@ -24,11 +25,12 @@ export class AddPetitionComponent implements OnInit {
       id_category: new FormControl({ value: 1, disabled: this.disabled }, [Validators.required]),
       id_object: new FormControl({ value: 1, disabled: this.disabled }, [Validators.required]),
       address: new FormControl({ value: '', disabled: this.disabled }, [Validators.required]),
+      longitude: new FormControl({ value: '', disabled: this.disabled }),
+      latitude: new FormControl({ value: '', disabled: this.disabled })
   });
   }
 
   async onSubmit() {
-    console.log(this.form.value);
     try {
         await this.api.post(
           JSON.stringify(this.form.value),

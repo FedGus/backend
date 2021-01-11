@@ -258,8 +258,8 @@ app.post("/api/add-petition", (req, res) => {
       req.body.id_object,
       1,
       req.body.id_user,
-      "",
-      "",
+      req.body.latitude,
+      req.body.longitude,
       req.body.address,
     ],
     function (err) {

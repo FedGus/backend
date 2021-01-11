@@ -17,6 +17,17 @@
         class="form-control-file mb-3"
         formControlName="filename"
       />
+      {% comment %}
+      <form
+        name="uploader"
+        action="/upload-photo/"
+        method="post"
+        enctype="form-data"
+      >
+        <input type="file" name="file" id="file" />
+        <input type="submit" value="Upload" />
+      </form>
+      {% endcomment %}
       <label for="content">Описание:<sup>*</sup></label>
       <textarea
         name="content"

@@ -1,5 +1,14 @@
 <div class="container">
   <h1 class="m-5 text-center">Создать петицию</h1>
+  <div class="form-group">
+    <label for="photo">Загрузите фотографию:</label>
+    <br />
+    <angular-file-uploader
+      [config]="afuConfig"
+      (ApiResponse)="fileUpload($event)"
+    >
+    </angular-file-uploader>
+  </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="title">Тема петиции:<sup>*</sup></label>
@@ -10,24 +19,7 @@
         formControlName="title"
         placeholder="Введите тему петиции"
       />
-      <label for="filename">Загрузите фотографию:</label>
-      <input
-        type="file"
-        name="filename"
-        class="form-control-file mb-3"
-        formControlName="filename"
-      />
-      {% comment %}
-      <form
-        name="uploader"
-        action="/upload-photo/"
-        method="post"
-        enctype="form-data"
-      >
-        <input type="file" name="file" id="file" />
-        <input type="submit" value="Upload" />
-      </form>
-      {% endcomment %}
+
       <label for="content">Описание:<sup>*</sup></label>
       <textarea
         name="content"
@@ -70,6 +62,13 @@
         class="form-control mb-3"
         formControlName="address"
         placeholder="Введите адрес"
+      />
+      <input
+        type="hidden"
+        name="filename"
+        class="form-control mb-3"
+        formControlName="filename"
+        value="filename"
       />
       <p><sup>*</sup> - Необходимые поля для заполнения</p>
       <div class="col text-right mt-5">

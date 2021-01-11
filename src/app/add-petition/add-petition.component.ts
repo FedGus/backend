@@ -12,6 +12,22 @@ import { MainService } from "../shared/services/main.service";
 export class AddPetitionComponent implements OnInit {
   form: FormGroup;
   disabled = false;
+  filename="";
+  afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png",
+    uploadAPI:  {
+      url: environment.baseUrl + "/upload-photo",
+    },
+    replaceTexts: {
+      selectFileBtn: 'Выберите файл',
+      resetBtn: 'Удалить',
+      uploadBtn: 'Загрузить',
+      attachPinBtn: 'Прикрепите файл',
+      afterUploadMsg_success: 'Успешно загружено!',
+      afterUploadMsg_error: 'Загрузка прервана!'
+    }
+  }
 
   constructor(private router: Router, private api: MainService) {
   }
@@ -20,7 +36,7 @@ export class AddPetitionComponent implements OnInit {
     this.form = new FormGroup({
       id_user: new FormControl({value: localStorage.getItem("id"), disabled: this.disabled }),
       title: new FormControl( { value: '', disabled: this.disabled } , [Validators.required]),
-      filename: new FormControl( { value: '', disabled: this.disabled }),
+      filename: new FormControl( { value: this.filename, disabled: this.disabled }),
       content: new FormControl({ value: '', disabled: this.disabled }, [Validators.required]),
       id_category: new FormControl({ value: 1, disabled: this.disabled }, [Validators.required]),
       id_object: new FormControl({ value: 1, disabled: this.disabled }, [Validators.required]),
@@ -43,4 +59,10 @@ export class AddPetitionComponent implements OnInit {
       }
   }
 
+    // Функция, возвращение имени загруженного файла
+  fileUpload(event){
+    console.log(JSON.parse(event.response).filename);
+    this.filename = JSON.parse(event.response).filename;
+    this.form.controls['filename'].setValue(this.filename);
+  }
 }

@@ -461,14 +461,6 @@ app.get("/api/getUserSignature/:id_petition/:id_user", function (req, res) {
   }
 });
 
-// Получение координат по адресу
-app.get("http://maps.googleapis.com/maps/api/geocode/json?address=/:address", (req, res) => {
-  if (!req.body) return res.sendStatus(400);
-  console.log("Пришёл GET запрос c координатами:");
-        console.log("Результаты:");
-        console.log(results);
-        res.json(results);
-});
 
 app.use(history());
 

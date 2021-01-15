@@ -25,26 +25,39 @@
 http://comfortable-city.std-709.ist.mospolytech.ru/api/
 
 ### Описание API
-GET:
+#### GET:
 http://comfortable-city.std-709.ist.mospolytech.ru/api/photo/:filename - получение полного пути файла
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/petitions - получение всех петиций
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/petitions/:id - получение информации петиции по id
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/getPetitionComment/:id_petition - получение всех комментариев к петиции по id петиции
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/getAuthorCommentName/:id_comment - получение имени и фамилии автора комментария по id
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/getSignatures/:id_petition - получение количества подписей к петиции
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/getUserSignature/:id_petition/:id_user - получение информации о том, что пользователь подписал петицию
 
-POST:
+#### POST:
+
 http://comfortable-city.std-709.ist.mospolytech.ru/upload-photo/ - получение файла и загрузка его в папку uploads
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/login - авторизация пользователя
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/registration - регистрация пользователя
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/add-petition - добавление петиции
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/addComment - добавление комментария к петиции
+
 http://comfortable-city.std-709.ist.mospolytech.ru/api/addSignature - добавление подписи к петиции
 
-PUT:
+#### PUT:
 http://comfortable-city.std-709.ist.mospolytech.ru/api/updateUser - изменение информации о пользователе
-DELETE:
+
+#### DELETE:
 http://comfortable-city.std-709.ist.mospolytech.ru/api/deleteComment/:id_comment - удаление комментария
 
 ## Мобильное приложение

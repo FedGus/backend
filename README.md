@@ -20,13 +20,13 @@
 - Удаление комментария к петиции
 - Получение имени и фамилии автора комментария
 
-## Сайт
+## Сервер с REST API
 
-http://comfortable-city.std-709.ist.mospolytech.ru/
+http://comfortable-city.std-709.ist.mospolytech.ru
 
 ## Мобильное приложение
 
-будет добавлено позже
+добавить ссылку на apk файл
 
 ## Стек технологий
 
@@ -40,7 +40,7 @@ http://comfortable-city.std-709.ist.mospolytech.ru/
 
 Для разработки мобильного приложения использовались технологии:
 
-- ...
+- Retrofit2
 
 ## ERD-диаграмма базы данных
 
@@ -50,11 +50,14 @@ http://comfortable-city.std-709.ist.mospolytech.ru/
 
 https://www.figma.com/file/egOOCyhTFN0PTGZDkEOGpg/%D0%A3%D0%B4%D0%BE%D0%B1%D0%BD%D1%8B%D0%B9-%D0%B3%D0%BE%D1%80%D0%BE%D0%B4?node-id=55%3A2
 
+## Планирование задач
+https://github.com/users/FedGus/projects/1
+
 ## Документация к API в Postman
 
 будет добавлено позже
 
-## Запуск проект локально
+## Запуск проекта локально
 
 ### Запуск клиентской части
 

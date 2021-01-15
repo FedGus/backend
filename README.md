@@ -91,7 +91,7 @@ https://github.com/users/FedGus/projects/1
 
 ## Документация к API в Postman
 
-будет добавлено позже
+https://documenter.getpostman.com/view/10730375/TVzVhFMJ
 
 ## Запуск проекта локально
 

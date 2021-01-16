@@ -8,7 +8,7 @@ const history = require("connect-history-api-fallback");
 const app = express();
 const port = process.env.PORT || 8086;
 const serveStatic = require("serve-static");
-const path = require("path");
+const path = require("path"); 
 
 // Загрузка файлов
 app.use(

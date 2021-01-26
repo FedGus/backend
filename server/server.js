@@ -89,25 +89,25 @@ connection.getConnection((err, connect) => {
 });
 
 // Получение файла и загрузка его в папку uploads
-app.post('/upload-photo/', async (req, res) => {
-  console.log('Пришёл POST запрос для загрузки файла:');
-  console.log('Файл: ', req.files)
+app.post("/upload-photo/", async (req, res) => {
+  console.log("Пришёл POST запрос для загрузки файла:");
+  console.log("Файл: ", req.files);
   try {
-      if(!req.files) {
-          res.send({
-              status: false,
-              message: 'No file uploaded'
-          });
-      } else {
-          let photo = req.files.file0;
-          let name = uniqueFilename("")+"."+photo.name.split(".")[1]
-          photo.mv('./server/uploads/' + name);
-          res.send({
-              status: true,
-              message: 'File is uploaded',
-              filename: name
-          });
-      }
+    if (!req.files) {
+      res.send({
+        status: false,
+        message: "No file uploaded",
+      });
+    } else {
+      let photo = req.files.file0;
+      let name = uniqueFilename("") + "." + photo.name.split(".")[1];
+      photo.mv("./server/uploads/" + name);
+      res.send({
+        status: true,
+        message: "File is uploaded",
+        filename: name,
+      });
+    }
   } catch (err) {
     console.log("Ошибка ", err);
     res.status(500).send(err);
@@ -119,7 +119,6 @@ app.get("/api/photo/:filename", (req, res) => {
   console.log(path.join(__dirname, "uploads", req.params.filename));
   res.sendFile(path.join(__dirname, "uploads", req.params.filename));
 });
-
 
 // Авторизация пользователя
 app.post("/api/login", (req, res) => {
@@ -461,7 +460,30 @@ app.get("/api/getUserSignature/:id_petition/:id_user", function (req, res) {
   }
 });
 
-
+// Получение петиции одного автора
+app.get("/api/getAllPetitionOneAuthor/:id_user", (req, res) => {
+  if (!req.body) return res.sendStatus(400);
+  console.log("Пришёл GET запрос для петиций одного автора:");
+  try {
+    connection.query(
+      "SELECT * FROM Petition WHERE id_user=?;",
+      [req.params.id_user],
+      function (err, results) {
+        if (err) {
+          res
+            .status(500)
+            .send("Ошибка сервера при получении петиций одного автора");
+          console.log(err);
+        }
+        console.log("Результаты:");
+        console.log(results);
+        res.json({ petition: results });
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
 app.use(history());
 
 if (process.env.NODE_ENV === "production") {
